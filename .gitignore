@@ -1,0 +1,14 @@
+# Mengabaikan folder setting editor
+.vscode/
+.acode/
+.quickedit/
+
+# Mengabaikan file sampah sistem
+.DS_Store
+Thumbs.db
+*.log
+
+# Mengabaikan folder dependency (jika nanti pakai node.js)
+node_modules/
+dist/
+.vercel/
