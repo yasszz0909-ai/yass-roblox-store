@@ -1,0 +1,106 @@
+/* 1. Pengaturan Dasar agar UI tidak meluber di HP */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'sans-serif';
+}
+
+body {
+    background-color: #f4f7f6; /* Warna abu-abu sangat muda */
+    color: #333;
+    max-width: 500px; /* Mengunci lebar agar tidak kebesaran di tablet/PC */
+    margin: 0 auto;
+    padding-bottom: 80px; /* Ruang agar tidak tertutup Navbar Bawah */
+}
+
+/* 2. Warna Tema Yass Store */
+:root {
+    --biru-utama: #2563eb;
+    --oranye-aksen: #f97316;
+    --putih: #ffffff;
+}
+
+/* 3. Grid Produk (2 Kolom di HP) */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 15px;
+}
+
+.product-card {
+    background: var(--putih);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+/* 4. Navbar Bawah (Persis Gambar Referensi Kamu) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 500px; /* Harus sama dengan lebar body */
+    background: var(--putih);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    z-index: 1000;
+}
+
+.nav-item {
+    text-align: center;
+    text-decoration: none;
+    color: #999;
+    font-size: 10px;
+}
+
+.nav-item.active {
+    color: var(--biru-utama);
+}
+
+.nav-item i {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* 5. Label Status (Hijau seperti di gambar) */
+.status-tag {
+    background-color: #dcfce7;
+    color: #166534;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Efek Kedip untuk Status Online */
+.status-online {
+    background-color: #22c55e !important; /* Hijau */
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.status-offline {
+    background-color: #ef4444 !important; /* Merah */
+}
