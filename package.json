@@ -1,0 +1,12 @@
+{
+  "name": "yass-roblox-store",
+  "version": "1.0.0",
+  "description": "Store resmi Yass Roblox Store - Ikan Secret & Item Fish It",
+  "main": "api/get-items.js",
+  "scripts": {
+    "start": "node api/get-items.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
