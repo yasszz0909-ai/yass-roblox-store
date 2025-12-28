@@ -1,0 +1,62 @@
+[
+  {
+    "id": "r1",
+    "nama": "1 Robux After Tax",
+    "kategori": "Roblox",
+    "tipe": "Via GamePass",
+    "harga": 170,
+    "keterangan": "Masuk setelah 5-7 Hari",
+    "foto": "assets/robux.png",
+    "stok": "Tersedia"
+  },
+  {
+    "id": "r2",
+    "nama": "100 Robux After Tax",
+    "kategori": "Roblox",
+    "tipe": "Via GamePass",
+    "harga": 16000,
+    "keterangan": "Masuk setelah 5-7 Hari",
+    "foto": "assets/robux.png",
+    "stok": "Tersedia"
+  },
+  {
+    "id": "r3",
+    "nama": "500 Robux After Tax",
+    "kategori": "Roblox",
+    "tipe": "Via GamePass",
+    "harga": 78000,
+    "keterangan": "Masuk setelah 5-7 Hari",
+    "foto": "assets/robux.png",
+    "stok": "Tersedia"
+  },
+  {
+    "id": "f1",
+    "nama": "El Shark Gran Maja",
+    "kategori": "Fish It!",
+    "tipe": "Secret Fish",
+    "harga": 14000,
+    "keterangan": "Trade In-Game",
+    "foto": "assets/el-shark.png",
+    "stok": "Tersedia"
+  },
+  {
+    "id": "f2",
+    "nama": "Secret Tumbal",
+    "kategori": "Fish It!",
+    "tipe": "Secret Fish",
+    "harga": 4000,
+    "keterangan": "Trade In-Game",
+    "foto": "assets/secret-tumbal.png",
+    "stok": "Tersedia"
+  },
+  {
+    "id": "f3",
+    "nama": "Enchant Stone x10",
+    "kategori": "Fish It!",
+    "tipe": "Item",
+    "harga": 1100,
+    "keterangan": "Trade In-Game",
+    "foto": "assets/stone.png",
+    "stok": "Tersedia"
+  }
+]
