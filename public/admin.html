@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Panel - Yass Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-slate-900 text-white pb-24">
+
+    <header class="p-4 border-b border-slate-700 flex justify-between items-center bg-slate-800 sticky top-0 z-50">
+        <h1 class="font-bold text-orange-500">Yass Admin Console</h1>
+        <div class="text-[10px] text-gray-400">Owner: yasszz0909@gmail.com</div>
+    </header>
+
+    <main class="p-4">
+        <section class="bg-slate-800 p-4 rounded-xl mb-6 border border-slate-700">
+            <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase">Status Toko</h2>
+            <div class="flex gap-2">
+                <button onclick="setStatus(true)" class="flex-1 bg-green-600 py-3 rounded-lg font-bold text-xs">SET ONLINE</button>
+                <button onclick="setStatus(false)" class="flex-1 bg-red-600 py-3 rounded-lg font-bold text-xs">SET OFFLINE</button>
+            </div>
+            <p id="current-status" class="text-center mt-3 text-[10px] text-gray-400 italic">Status: Menghubungkan...</p>
+        </section>
+
+        <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase">Kelola Katalog</h2>
+        <div id="admin-product-list" class="space-y-3">
+             <p class="text-gray-500 text-xs italic text-center">Data produk tersinkron dengan products.json</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="order.html" class="nav-item">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transaksi</span>
+        </a>
+        <a href="admin.html" class="nav-item active">
+            <i class="fas fa-user-shield"></i>
+            <span>Admin</span>
+        </a>
+    </nav>
+
+    <script>
+        function setStatus(online) {
+            const statusLabel = document.getElementById('current-status');
+            statusLabel.innerText = online ? "Status: ONLINE" : "Status: OFFLINE";
+            statusLabel.className = online ? "text-center mt-3 text-[10px] text-green-400 font-bold" : "text-center mt-3 text-[10px] text-red-400 font-bold";
+        }
+        window.onload = () => setStatus(true);
+    </script>
+</body>
+</html>

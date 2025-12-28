@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Yass Roblox Store</title>
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-10">
+    <div class="flex justify-between items-center">
+        <div>
+            <h1 class="text-xl font-bold text-blue-600">Yass Store</h1>
+            <div id="owner-status" class="flex items-center gap-1.5 mt-0.5">
+                <span id="status-dot" class="w-2.5 h-2.5 bg-gray-400 rounded-full"></span>
+                <span id="status-text" class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Checking...</span>
+            </div>
+        </div>
+        <button id="login-btn" class="bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-semibold">Login</button>
+    </div>
+</header>
+
+
+    <main class="p-4">
+        <div class="bg-orange-500 rounded-xl p-4 text-white mb-6 shadow-md">
+            <p class="text-xs opacity-90">Fish It! & Roblox</p>
+            <h2 class="text-lg font-bold">Proses Cepat & Aman</h2>
+        </div>
+
+        <h3 class="font-bold mb-3 text-gray-700">Katalog Produk</h3>
+        
+        <div id="product-list" class="grid grid-cols-2 gap-3">
+            <p class="text-gray-500 col-span-2 text-center text-sm">Memuat produk...</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+    </a>
+    <a href="order.html" class="nav-item">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Transaksi</span>
+    </a>
+    <a href="#" id="nav-akun" class="nav-item">
+        <i class="fas fa-user"></i>
+        <span>Akun</span>
+    </a>
+</nav>
+
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

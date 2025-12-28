@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Transaksi - Yass Store</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 pb-20">
+
+    <header class="bg-white p-4 shadow-sm sticky top-0 z-50">
+        <h1 class="text-lg font-bold text-gray-800">Riwayat Pembelian</h1>
+        <div class="flex gap-4 mt-3 text-sm overflow-x-auto no-scrollbar border-b">
+            <button onclick="filterTabs(this, 'Semua')" class="tab-btn pb-2 border-b-2 border-blue-600 text-blue-600 font-bold whitespace-nowrap">Semua</button>
+            <button onclick="filterTabs(this, 'Menunggu')" class="tab-btn pb-2 text-gray-500 whitespace-nowrap">Menunggu</button>
+            <button onclick="filterTabs(this, 'Dikirim')" class="tab-btn pb-2 text-gray-500 whitespace-nowrap">Dikirim</button>
+            <button onclick="filterTabs(this, 'Selesai')" class="tab-btn pb-2 text-gray-500 whitespace-nowrap">Selesai</button>
+        </div>
+    </header>
+
+    <main class="p-4 space-y-4" id="order-list">
+        <div id="empty-state" class="text-center py-20 text-gray-400">
+            <i class="fas fa-receipt text-5xl mb-4 opacity-20"></i>
+            <p id="empty-text" class="text-sm">Belum ada transaksi</p>
+        </div>
+    </main>
+
+    <nav class="bottom-nav">
+        <a href="index.html" class="nav-item">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="order.html" class="nav-item active">
+            <i class="fas fa-exchange-alt"></i>
+            <span>Transaksi</span>
+        </a>
+        <a href="#" id="nav-akun" class="nav-item">
+            <i class="fas fa-user"></i>
+            <span>Akun</span>
+        </a>
+    </nav>
+
+    <script src="js/auth.js"></script>
+    <script>
+        function filterTabs(elemen, kategori) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-b-2', 'border-blue-600', 'text-blue-600', 'font-bold');
+                btn.classList.add('text-gray-500');
+            });
+            elemen.classList.add('border-b-2', 'border-blue-600', 'text-blue-600', 'font-bold');
+            document.getElementById('empty-text').innerHTML = `Belum ada transaksi di kategori <b>${kategori}</b>`;
+        }
+    </script>
+</body>
+</html>
