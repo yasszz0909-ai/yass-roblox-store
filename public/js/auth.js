@@ -20,19 +20,36 @@ const CONFIG_YASS = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+    // 1. Ambil elemen tombol
+    const loginBtn = document.getElementById('login-btn');
+    const navAkun = document.getElementById('nav-akun');
+
+    // 2. Logika Klik Tombol Akun (Navbar Bawah)
+    if (navAkun) {
+        navAkun.addEventListener('click', (e) => {
+            e.preventDefault(); // Mencegah munculnya '#' di URL
+            const user = auth.currentUser;
+            if (user) {
+                window.location.href = 'order.html';
+            } else {
+                handleAuth();
+            }
+        });
+    }
+
+    // 3. Pantau Status Login
     auth.onAuthStateChanged(user => {
-        const loginBtn = document.getElementById('login-btn');
         if (user) {
-            // Jika login berhasil
+            // Jika login berhasil, ganti tombol Login (atas) jadi foto profil
             if (loginBtn) {
                 loginBtn.innerHTML = `<img src="${user.photoURL}" class="w-8 h-8 rounded-full border-2 border-blue-500 shadow-sm">`;
                 loginBtn.onclick = () => window.location.href = 'order.html';
             }
             
-            // Proteksi Admin
+            // Proteksi Admin: Hanya email owner yang boleh masuk admin.html
             if (window.location.pathname.includes('admin.html')) {
                 if (user.email !== CONFIG_YASS.email) {
-                    alert("Akses Ditolak!");
+                    alert("Akses Ditolak! Anda bukan Owner.");
                     window.location.href = 'index.html';
                 }
             }
@@ -40,8 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Jika belum login
             if (loginBtn) {
                 loginBtn.innerText = "Login";
-                loginBtn.onclick = () => handleAuth();
+                loginBtn.onclick = (e) => handleAuth(e);
             }
+            // Tendang dari halaman admin jika tidak login
             if (window.location.pathname.includes('admin.html')) {
                 window.location.href = 'index.html';
             }
@@ -49,11 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-async function handleAuth() {
+// 4. Fungsi Login Pop-up
+async function handleAuth(e) {
+    if (e) e.preventDefault();
     try {
         await auth.signInWithPopup(provider);
     } catch (error) {
-        console.error("Error:", error);
-        alert("Gagal Login. Pastikan popup diizinkan.");
+        console.error("Error Login:", error);
+        alert("Gagal Login. Pastikan pop-up diizinkan di browser Anda.");
     }
+}
+
+// Fungsi Logout (bisa dipanggil jika perlu)
+function logout() {
+    auth.signOut().then(() => window.location.href = 'index.html');
 }
