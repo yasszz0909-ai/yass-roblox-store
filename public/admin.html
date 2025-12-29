@@ -16,18 +16,18 @@
     </header>
 
     <main class="p-4">
-        <section class="bg-slate-800 p-4 rounded-xl mb-6 border border-slate-700">
-            <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase">Status Toko</h2>
+        <section class="bg-slate-800 p-4 rounded-xl mb-6 border border-slate-700 shadow-xl">
+            <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase tracking-widest">Status Toko</h2>
             <div class="flex gap-2">
-                <button onclick="updateStatus(true)" class="flex-1 bg-green-600 py-3 rounded-lg font-bold text-xs hover:bg-green-700 transition">SET ONLINE</button>
-                <button onclick="updateStatus(false)" class="flex-1 bg-red-600 py-3 rounded-lg font-bold text-xs hover:bg-red-700 transition">SET OFFLINE</button>
+                <button onclick="updateStatus(true)" class="flex-1 bg-green-600 hover:bg-green-700 py-4 rounded-xl font-bold text-xs transition-all active:scale-95">SET ONLINE</button>
+                <button onclick="updateStatus(false)" class="flex-1 bg-red-600 hover:bg-red-700 py-4 rounded-xl font-bold text-xs transition-all active:scale-95">SET OFFLINE</button>
             </div>
-            <p id="current-status" class="text-center mt-3 text-[10px] text-gray-400 italic">Status: Menghubungkan...</p>
+            <p id="current-status" class="text-center mt-4 text-[11px] text-gray-400 italic font-medium">Menghubungkan ke Database...</p>
         </section>
 
-        <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase">Kelola Katalog</h2>
-        <div id="admin-product-list" class="space-y-3">
-             <p class="text-gray-500 text-xs italic text-center">Data produk tersinkron dengan products.json</p>
+        <h2 class="text-xs font-semibold mb-3 text-gray-400 uppercase tracking-widest">Kelola Katalog</h2>
+        <div id="admin-product-list" class="space-y-3 opacity-50 pointer-events-none">
+             <p class="text-gray-500 text-xs italic text-center">Fitur edit produk segera hadir</p>
         </div>
     </main>
 
@@ -51,35 +51,29 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 
     <script src="js/auth.js"></script>
-
     <script>
-        // Inisialisasi Database
         const db = firebase.database();
-        const statusRef = db.ref('shop_status');
 
-        // Fungsi untuk mengirim perubahan status ke Firebase
+        // Fungsi merubah status di Database
         function updateStatus(isOnline) {
-            statusRef.set({
+            db.ref('shop_status').set({
                 online: isOnline,
-                last_updated: firebase.database.ServerValue.TIMESTAMP
+                updatedAt: Date.now()
             }).then(() => {
-                console.log("Status berhasil diperbarui ke database!");
-            }).catch((error) => {
-                alert("Gagal update status: " + error.message);
-            });
+                console.log("Status tersimpan!");
+            }).catch(err => alert("Gagal: " + err.message));
         }
 
-        // Mendengarkan perubahan status dari database untuk memperbarui tampilan tombol
-        statusRef.on('value', (snapshot) => {
+        // Pantau perubahan status di halaman admin
+        db.ref('shop_status').on('value', (snapshot) => {
             const data = snapshot.val();
-            const statusLabel = document.getElementById('current-status');
-            
+            const label = document.getElementById('current-status');
             if (data) {
                 const online = data.online;
-                statusLabel.innerText = online ? "Status Saat Ini: ONLINE" : "Status Saat Ini: OFFLINE";
-                statusLabel.className = online 
-                    ? "text-center mt-3 text-[10px] text-green-400 font-bold" 
-                    : "text-center mt-3 text-[10px] text-red-400 font-bold";
+                label.innerText = online ? "Status Saat Ini: ONLINE" : "Status Saat Ini: OFFLINE";
+                label.className = online 
+                    ? "text-center mt-4 text-[11px] text-green-400 font-bold uppercase" 
+                    : "text-center mt-4 text-[11px] text-red-400 font-bold uppercase";
             }
         });
     </script>
