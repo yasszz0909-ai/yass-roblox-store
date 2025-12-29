@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Yass Roblox Store</title>
-    
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,7 +15,7 @@
             <div>
                 <h1 class="text-xl font-bold text-blue-600">Yass Store</h1>
                 <div id="owner-status" class="flex items-center gap-1.5 mt-0.5">
-                    <span id="status-dot" class="w-2.5 h-2.5 bg-gray-400 rounded-full"></span>
+                    <span id="status-dot" class="w-2.5 h-2.5 bg-gray-400 rounded-full transition-all duration-500"></span>
                     <span id="status-text" class="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Checking...</span>
                 </div>
             </div>
@@ -31,7 +30,6 @@
         </div>
 
         <h3 class="font-bold mb-3 text-gray-700">Katalog Produk</h3>
-        
         <div id="product-list" class="grid grid-cols-2 gap-3">
             <p class="text-gray-500 col-span-2 text-center text-sm">Memuat produk...</p>
         </div>
@@ -64,11 +62,9 @@
     <script src="js/products.js"></script>
 
     <script>
-        // Logika Sinkronisasi Status Toko
+        // Memantau Status Toko dari Firebase
         const db = firebase.database();
-        const statusRef = db.ref('shop_status');
-
-        statusRef.on('value', (snapshot) => {
+        db.ref('shop_status').on('value', (snapshot) => {
             const data = snapshot.val();
             const statusText = document.getElementById('status-text');
             const statusDot = document.getElementById('status-dot');
@@ -76,11 +72,11 @@
             if (data && data.online) {
                 statusText.innerText = "ONLINE (FAST RESPONSE)";
                 statusText.className = "text-[10px] font-bold text-green-600 uppercase tracking-wider";
-                statusDot.className = "w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_5px_#22c55e]";
+                statusDot.className = "w-2.5 h-2.5 bg-green-500 rounded-full shadow-[0_0_8px_#22c55e]";
             } else {
                 statusText.innerText = "OFFLINE (SLOW RESPONSE)";
                 statusText.className = "text-[10px] font-bold text-red-600 uppercase tracking-wider";
-                statusDot.className = "w-2.5 h-2.5 bg-red-500 rounded-full";
+                statusDot.className = "w-2.5 h-2.5 bg-red-500 rounded-full shadow-none";
             }
         });
     </script>
